@@ -65,6 +65,47 @@ public class DoublyLinkedList {
         }
     }
 
+    // Method to insert a node at a specific position
+    public void insertAtPosition(int data, int position) {
+        Node newNode = new Node(data);
+        // If position is 1, insert at the head
+        if (position == 1) {
+            newNode.next = head;
+            if (head != null) {
+                head.prev = newNode;
+            }
+            head = newNode;
+            return;
+        }
+
+        Node temp = head;
+        int count = 1;
+
+        // Traverse the list until the position is reached
+        while (temp != null && count < position - 1) {
+            temp = temp.next;
+            count++;
+        }
+
+        // If the position is out of bounds
+        if (temp == null) {
+            System.out.println("Position out of bounds");
+            return;
+        }
+
+        // Inserting at the end if temp.next is null
+        if (temp.next == null) {
+            temp.next = newNode;
+            newNode.prev = temp;
+        } else {
+            // Inserting the new node between temp and temp.next
+            newNode.next = temp.next;
+            temp.next.prev = newNode;
+            temp.next = newNode;
+            newNode.prev = temp;
+        }
+    }
+
     public void displayForward() {
         if (head == null) {
             System.out.println("List is empty...");
