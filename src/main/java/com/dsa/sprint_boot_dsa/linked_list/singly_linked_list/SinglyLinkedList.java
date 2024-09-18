@@ -1,20 +1,29 @@
 package com.dsa.sprint_boot_dsa.linked_list.singly_linked_list;
 
 public class SinglyLinkedList {
+
     Node head;
 
     public SinglyLinkedList() {
         head = null;
     }
 
-    public void append(int data) {
+    public void insertElementAtFirst(int data) {
         Node newNode = new Node(data);
-        // If the list is empty, make the new node the head
         if (head == null) {
             head = newNode;
             return;
         }
-        // Otherwise, traverse to the end of the list and insert the new node
+        newNode.next = head;
+        head = newNode;
+    }
+
+    public void insertElementAtLast(int data) {
+        Node newNode = new Node(data);
+        if (head == null) {
+            head = newNode;
+            return;
+        }
         Node current = head;
         while (current.next != null) {
             current = current.next;
@@ -22,45 +31,41 @@ public class SinglyLinkedList {
         current.next = newNode;
     }
 
-    // Method to print the entire list
+    public void insertElementAtParticularPosition(int data, int position) {
+        Node newNode = new Node(data);
+
+        // Case: Insert at the beginning (position 0)
+        if (position == 0) {
+            newNode.next = head;
+            head = newNode;
+            return;
+        }
+        Node current = head;
+        int count = 0;
+        while (current != null && count < position - 1) {
+            current = current.next;
+            count++;
+        }
+        // If current is null, the position is out of bounds
+        if (current == null) {
+            System.out.println("Position out of bounds");
+            return;
+        }
+
+        // Insert the new node at the position
+        newNode.next = current.next;
+        current.next = newNode;
+
+    }
+
     public void printList() {
+        if (head == null) {
+            System.out.println("List is empty");
+        }
         Node current = head;
         while (current != null) {
-            System.out.print(current.data + " -> ");
+            System.out.print(current.data + " ");
             current = current.next;
-        }
-        System.out.println("null"); // End of the list
-    }
-
-    // Method to insert a new node at the beginning
-    public void prepend(int data) {
-        Node newNode = new Node(data); // Create a new node
-        newNode.next = head;            // Make the new node point to the current head
-        head = newNode;                // Make the new node the new head
-    }
-
-    // Method to delete a node with a specific value
-    public void delete(int data) {
-        if (head == null) {
-            System.out.println("List is empty.");
-            return;
-        }
-        // If the node to be deleted is the head
-        if (head.data == data) {
-            head = head.next;
-            return;
-        }
-        // Otherwise, search for the node to delete
-        Node current = head;
-        while (current.next != null && current.next.data != data) {
-            current = current.next;
-        }
-
-        // If the node was found, remove it from the list
-        if (current.next != null) {
-            current.next = current.next.next;
-        } else {
-            System.out.println("Node not found.");
         }
     }
 }
