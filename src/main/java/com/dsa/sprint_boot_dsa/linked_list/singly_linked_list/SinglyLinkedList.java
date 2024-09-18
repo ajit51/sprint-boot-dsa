@@ -109,6 +109,19 @@ public class SinglyLinkedList {
         // Node to be deleted is `current.next`
         Node nodeToDeleted = current.next;
         current.next = nodeToDeleted.next;
+    }
+
+    public int searchElement(int key) {
+        Node current = head;
+        int position = 1;
+        while (current != null) {
+            if (current.data == key) {
+                return position;
+            }
+            current = current.next;
+            position++;
+        }
+        return -1;
 
     }
 

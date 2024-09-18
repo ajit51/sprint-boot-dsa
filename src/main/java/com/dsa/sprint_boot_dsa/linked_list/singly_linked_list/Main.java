@@ -8,7 +8,12 @@ public class Main {
         list.insertNodeAtFirst(80);
         list.insertNodeAtFirst(10);
         list.printList();
-        list.deleteNodeAtPosition(1);
-        list.printList();
+        int result = list.searchElement(10);
+        int key = 20;
+        if (result != -1) {
+            System.out.println("Element " + key + " fount at result " + result);
+        } else {
+            System.out.println("Element " + key + " not fount at result");
+        }
     }
 }
