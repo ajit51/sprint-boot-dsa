@@ -8,7 +8,7 @@ public class SinglyLinkedList {
         head = null;
     }
 
-    public void insertElementAtFirst(int data) {
+    public void insertNodeAtFirst(int data) {
         Node newNode = new Node(data);
         if (head == null) {
             head = newNode;
@@ -18,7 +18,7 @@ public class SinglyLinkedList {
         head = newNode;
     }
 
-    public void insertElementAtLast(int data) {
+    public void insertNodeAtLast(int data) {
         Node newNode = new Node(data);
         if (head == null) {
             head = newNode;
@@ -31,7 +31,7 @@ public class SinglyLinkedList {
         current.next = newNode;
     }
 
-    public void insertElementAtParticularPosition(int data, int position) {
+    public void insertNodeAtParticularPosition(int data, int position) {
         Node newNode = new Node(data);
 
         // Case: Insert at the beginning (position 0)
@@ -58,14 +58,69 @@ public class SinglyLinkedList {
 
     }
 
+    public void deleteFirstNode() {
+        if (head == null) {
+            System.out.println("List is empty, nothing to delete.");
+            return;
+        }
+        head = head.next;
+    }
+
+    public void deleteLastNode() {
+        if (head == null) {
+            System.out.println("List is empty, nothing to delete.");
+            return;
+        }
+        // If the list has only one element
+        if (head.next == null) {
+            head = null;
+            System.out.println("Deleted, There has only one element");
+            return;
+        }
+        Node current = head;
+        while (current.next.next != null) {
+            current = current.next;
+        }
+        current.next = null;
+    }
+
+    public void deleteNodeAtPosition(int position) {
+        if (head == null) {
+            System.out.println("List is empty, nothing to delete.");
+            return;
+        }
+        // Case 1: Deleting the head node
+        if (position == 0) {
+            head = head.next;
+            return;
+        }
+        Node current = head;
+        // Traverse to the node before the one we want to delete
+        for (int i = 0; current != null && i < position - 1; i++) {
+            current = current.next;
+        }
+
+        // If position is out of range
+        if (current == null || current.next == null) {
+            System.out.println("Position out of range.");
+            return;
+        }
+
+        // Node to be deleted is `current.next`
+        Node nodeToDeleted = current.next;
+        current.next = nodeToDeleted.next;
+
+    }
+
     public void printList() {
         if (head == null) {
             System.out.println("List is empty");
         }
         Node current = head;
         while (current != null) {
-            System.out.print(current.data + " ");
+            System.out.print(current.data + " -> ");
             current = current.next;
         }
+        System.out.println("null");
     }
 }
