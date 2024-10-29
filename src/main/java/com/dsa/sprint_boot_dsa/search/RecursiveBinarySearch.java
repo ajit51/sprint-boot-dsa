@@ -2,6 +2,8 @@ package com.dsa.sprint_boot_dsa.search;
 
 public class RecursiveBinarySearch {
 
+    //time complexity = O(log n)
+    //space  complexity = O(1)
     private static int binarySearch(int arr[], int target, int left, int righ) {
         if (left > righ) {
             return -1;

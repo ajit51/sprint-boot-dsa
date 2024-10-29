@@ -1,6 +1,9 @@
 package com.dsa.sprint_boot_dsa.search;
 
 public class Iterative_Binary_Search {
+
+    //time complexity = O(log n)
+    //space  complexity = O(1)
     public static int iterativeBinarySearch(int[] arr, int target) {
         int left = 0;
         int right = arr.length - 1;
